@@ -36,9 +36,12 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'frontend')));
 
   // Direct any unmatched routes to index.html
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'index.html'));
-  });
+  app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api/')) {
+    return next();
+  }
+  res.sendFile(path.resolve(__dirname, 'frontend', 'index.html'));
+});
 }
 
 
