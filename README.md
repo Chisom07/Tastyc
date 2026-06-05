@@ -27,8 +27,8 @@ A Node.js REST API for managing restaurant menu items and orders, built with Exp
    ```
    MONGODB_URI=mongodb://localhost:27017/restaurant-api
    PORT=5000
-   ADMIN_USER=admin
-   ADMIN_PASS=admin123
+   ADMIN_USER=####
+   ADMIN_PASS=#######
    ```
 
 4. Start the server:
