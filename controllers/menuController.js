@@ -1,4 +1,4 @@
-const menuModel = require('../models/menuItem');
+const menuModel = require('../models/MenuItem');
 
 //Create a new menu item
 exports.createMenuItem = async (req, res) => {
