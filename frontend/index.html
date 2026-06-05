@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tastyc - Restaurant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <p class="logoName">Tastyc</p>
+                <p class="name">Premium Dining</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">HOME</a></li>
+                <li><a href="#menu">MENU</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="auth.html" class="auth-link">Sign In / Sign Up</a>
+                <a href="#cart" class="cart-icon">🛒 Cart (<span id="cart-count">0</span>)</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-text">
+            <div class="textLine">
+                <div class="line"><hr width="50%" color="#ffa500"/></div>
+                <h1 class="text">HELLO, NEW FRIEND!</h1>
+            </div>
+            <h2>Welcome Back <br> to Tastyc</h2>
+            <p>Experience the finest culinary delights with our curated menu of fresh, delicious dishes.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})">BROWSE MENU</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('order-form').scrollIntoView({behavior: 'smooth'})">PLACE ORDER</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <h2 class="section-title">OUR MENU</h2>
+        <div class="filter-tools">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="appetizers">Appetizers</button>
+                <button class="filter-btn" data-category="mains">Main Course</button>
+                <button class="filter-btn" data-category="desserts">Desserts</button>
+                <button class="filter-btn" data-category="beverages">Beverages</button>
+            </div>
+        </div>
+        <div class="menu-items" id="menu-items">
+            <div class="loading">Loading menu items...</div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart" id="cart">
+        <div class="cart-container">
+            <h2>Your Cart</h2>
+            <div class="cart-items" id="cart-items">
+                <p class="empty-cart">Your cart is empty</p>
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total">₦0.00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section class="order-form" id="order-form">
+        <h2 class="section-title">PLACE YOUR ORDER</h2>
+        <form class="form-container" id="order-form-element">
+            <div class="form-group">
+                <label for="customer-name">Name:</label>
+                <input type="text" id="customer-name" name="name" required placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="customer-phone">Phone:</label>
+                <input type="tel" id="customer-phone" name="phone" required placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+                <label for="delivery-time">Preferred Delivery Time:</label>
+                <input type="time" id="delivery-time" name="time" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">CONFIRM ORDER</button>
+                <button type="button" class="clear-cart-btn" onclick="clearCart()">CLEAR CART</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title">ABOUT TASTYC</h2>
+        <div class="about-content">
+            <p>Tastyc is a premium restaurant offering the finest culinary experience. Our chefs use fresh, locally sourced ingredients to create memorable dishes that delight your senses.</p>
+            <div class="about-features">
+                <div class="feature">
+                    <span class="icon">🍽️</span>
+                    <h3>Premium Quality</h3>
+                    <p>Fresh ingredients, expert preparation</p>
+                </div>
+                <div class="feature">
+                    <span class="icon">⚡</span>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick and reliable service</p>
+                </div>
+                <div class="feature">
+                    <span class="icon">💎</span>
+                    <h3>Best Prices</h3>
+                    <p>Value for money guaranteed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">CONTACT US</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="icon">📞</span>
+                <p>+234 813 500 7883</p>
+            </div>
+            <div class="contact-item">
+                <span class="icon">📧</span>
+                <p>info@tastyc.com</p>
+            </div>
+            <div class="contact-item">
+                <span class="icon">📍</span>
+                <p>123 Food Street, Culinary City, CC 12345</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Tastyc Restaurant. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

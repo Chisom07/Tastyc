@@ -2,8 +2,15 @@ const menuModel = require('../models/menuItem');
 
 //Create a new menu item
 exports.createMenuItem = async (req, res) => {
-    const { name, description, price, category, ingredients } = req.body;
-    const menuItem = new menuModel({ name, description, price, category, ingredients });
+    const { name, description, price, category, ingredients, image } = req.body;
+    const menuItem = new menuModel({
+        name,
+        description,
+        price,
+        category,
+        image,
+        ingredients: Array.isArray(ingredients) ? ingredients : [],
+    });
     try {
         const savedMenuItem = await menuItem.save();
         res.status(201).json(savedMenuItem);
@@ -39,11 +46,21 @@ exports.getMenuItemById = async (req, res) => {
 
 //Update a menu item by ID
 exports.updateMenuItem = async (req, res) => {
-    const { name, description, price } = req.body;
+    const { name, description, price, category, image, ingredients, available } = req.body;
     try {
+        const updateFields = {
+            name,
+            description,
+            price,
+            category,
+            image,
+            available,
+        };
+        if (ingredients) updateFields.ingredients = Array.isArray(ingredients) ? ingredients : ingredients.split(',').map(i => i.trim()).filter(Boolean);
+
         const updatedMenuItem = await menuModel.findByIdAndUpdate(
             req.params.id,
-            { name, description, price },
+            updateFields,
             { new: true }
         );
         if (!updatedMenuItem) {

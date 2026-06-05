@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign In - Tastyc</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo"><p class="logoName">Tastyc</p></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#menu">Menu</a></li>
+      </ul>
+      <a href="index.html#cart" class="cart-icon">🛒 Cart (<span id="cart-count">0</span>)</a>
+    </div>
+  </nav>
+
+  <section class="auth-section">
+    <div class="auth-panel">
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab active" data-mode="login">Sign In</button>
+        <button type="button" class="auth-tab" data-mode="signup">Sign Up</button>
+      </div>
+      <form id="auth-form">
+        <h2 id="auth-title">Sign In</h2>
+        <input type="text" id="auth-username" name="username" placeholder="Username" required>
+        <input type="password" id="auth-password" name="password" placeholder="Password" required>
+        <button type="submit" class="submit-btn">Continue</button>
+      </form>
+      <!-- -->
+      <div class="auth-status" id="auth-status">Not signed in</div>
+    </div>
+  </section>
+
+  <section class="order-history-section" id="order-history-section" style="display:none;">
+    <div class="cart-container">
+      <h2 class="section-title">Your Orders</h2>
+      <div id="order-history" class="order-history"></div>
+    </div>
+  </section>
+
+  <script src="auth.js"></script>
+</body>
+</html>

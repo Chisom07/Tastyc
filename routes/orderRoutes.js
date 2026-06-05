@@ -8,28 +8,19 @@ const {
     getOrdersByStatus,
     getCustomerOrderHistory
 } = require('../controllers/orderController');
+const { adminAuth, userAuth } = require('../middlewares/authMiddleware');
 
 const router = express.Router();
 
 //Place a new order
 router.post('/', placeOrder);
 
-//Get all orders
-router.get('/', getOrders);
-
-//Get a single order by ID
-router.get('/:id', getOrderById);
-
-//Update order status
-router.put('/:id', updateOrderStatus);
-
-//Cancel an order
-router.delete('/:id', cancelOrder);
-
-//Get orders by status
-router.get('/status/:status', getOrdersByStatus);
-
-//Get customer order history
-router.get('/customer/:customerId', getCustomerOrderHistory);
+// Admin-protected order routes
+router.get('/status/:status', adminAuth, getOrdersByStatus);
+router.get('/', adminAuth, getOrders);
+router.get('/customer/:username', userAuth, getCustomerOrderHistory);
+router.get('/:id', userAuth, getOrderById);
+router.put('/:id', adminAuth, updateOrderStatus);
+router.delete('/:id', adminAuth, cancelOrder);
 
 module.exports = router;

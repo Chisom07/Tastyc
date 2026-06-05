@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin - Tastyc</title>
+  <link rel="stylesheet" href="style.css">
+ </head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo"><p class="logoName">Tastyc Admin</p></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+      </ul>
+      <a href="auth.html" class="cart-icon">Sign In</a>
+    </div>
+  </nav>
+
+  <section class="section">
+    <h2 class="section-title">Admin Dashboard</h2>
+    <div class="cart-container">
+      <h3>Add Menu Item</h3>
+      <form id="add-item-form">
+        <input id="mi-name" placeholder="Name" required>
+        <input id="mi-category" placeholder="Category" required>
+        <input id="mi-price" placeholder="Price (numbers only)" required>
+        <input id="mi-image" placeholder="Image URL (optional)">
+        <textarea id="mi-desc" placeholder="Description"></textarea>
+        <button class="submit-btn" type="submit">Add Item</button>
+      </form>
+    </div>
+
+    <section class="order-history-section">
+      <h2 class="section-title">Orders</h2>
+      <div id="admin-orders" class="order-history"></div>
+    </section>
+
+    <div class="menu-items" id="admin-items"></div>
+  </section>
+
+  <script src="admin.js"></script>
+</body>
+</html>

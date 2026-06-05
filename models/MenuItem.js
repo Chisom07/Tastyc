@@ -11,16 +11,20 @@ const menuItemSchema = new mongoose.Schema(
             required: true
         },
         price: {
-            type: String,
+            type: Number,
             required: true
         },
         category: {
             type: String,
             required: true
         },
+        image: {
+            type: String,
+            default: ''
+        },
         ingredients: {
             type: [String],
-            required: true
+            default: []
         },
         available: {
             type: Boolean,

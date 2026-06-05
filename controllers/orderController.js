@@ -2,8 +2,21 @@ const orderModel = require('../models/Order');
 
 //Place a new order
 exports.placeOrder = async (req, res) => {
-    const { items, totalPrice } = req.body;
-    const order = new orderModel({ items, totalPrice });
+    const { customerName, customerPhone, items, totalAmount, customerUsername } = req.body;
+    
+    // Validate required fields
+    if (!customerName || !customerPhone || !items || items.length === 0 || !totalAmount) {
+        return res.status(400).json({ message: 'Missing required fields: customerName, customerPhone, items, totalAmount' });
+    }
+
+    const order = new orderModel({ 
+        customerName, 
+        customerPhone, 
+        items, 
+        totalAmount,
+        customerUsername: customerUsername || ''
+    });
+    
     try {
         const savedOrder = await order.save();
         res.status(201).json(savedOrder);
@@ -30,6 +43,9 @@ exports.getOrderById = async (req, res) => {
             return res.status(404).json({
                 message: 'Order not found'
             });
+        }
+        if (req.user && req.user.role !== 'admin' && order.customerUsername !== req.user.username) {
+            return res.status(403).json({ message: 'Access denied' });
         }
         res.json(order);
     } catch (error) {
@@ -60,7 +76,7 @@ exports.updateOrderStatus = async (req, res) => {
 //Cancel an order
 exports.cancelOrder = async (req, res) => {
     try {
-        const cancelledOrder = await orderModel.findByIdAndDelete(
+        const cancelledOrder = await orderModel.findByIdAndUpdate(
             req.params.id,
             { status: 'cancelled' },
             { new: true }
@@ -89,9 +105,12 @@ exports.getOrdersByStatus = async (req, res) => {
 
 //Get customer order history
 exports.getCustomerOrderHistory = async (req, res) => {
-    const { customerId } = req.params;
+    const { username } = req.params;
+    if (req.user && req.user.role !== 'admin' && req.user.username !== username) {
+        return res.status(403).json({ message: 'Access denied' });
+    }
     try {
-        const orders = await orderModel.find({ customerId });
+        const orders = await orderModel.find({ customerUsername: username });
         res.json(orders);
     } catch (error) {
         res.status(500).json({ message: error.message });

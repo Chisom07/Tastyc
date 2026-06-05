@@ -4,12 +4,16 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const menuRoutes = require('./routes/menuRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Auth route
+app.use('/api/auth', authRoutes);
 
 // Use the routes
 app.use('/api/menu', menuRoutes);

@@ -31,9 +31,13 @@ const orderSchema = new mongoose.Schema(
             type: Number,
             required: true
         },
+        customerUsername: {
+            type: String,
+            default: ''
+        },
         status: {
             type: String,
-            enum: ['pending', 'preparing', 'ready', 'delivered', 'cancelled'],
+            enum: ['pending', 'preparing', 'ready', 'completed', 'cancelled'],
             default: 'pending'
         },
     },

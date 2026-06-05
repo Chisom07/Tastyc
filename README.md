@@ -23,10 +23,12 @@ A Node.js REST API for managing restaurant menu items and orders, built with Exp
    npm install
    ```
 
-3. Create a `.env` file in the root directory and add your MongoDB connection string:
+3. Create a `.env` file in the root directory and add your MongoDB connection string. You can also set optional admin credentials for the built-in admin login:
    ```
    MONGODB_URI=mongodb://localhost:27017/restaurant-api
    PORT=5000
+   ADMIN_USER=admin
+   ADMIN_PASS=admin123
    ```
 
 4. Start the server:
