@@ -32,15 +32,15 @@ mongoose
 
 
 
-  // Set static folder
-  app.use(express.static(path.join(__dirname, 'frontend')));
+// Set static folder
+app.use(express.static(path.join(__dirname, 'frontend')));
 
-  // Direct any unmatched routes to index.html
-  app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api/')) {
-    return next();
-  }
-  res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+// Direct any unmatched routes to index.html
+app.get('*', (req, res, next) => {
+if (req.path.startsWith('/api/')) {
+return next();
+}
+res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
 
