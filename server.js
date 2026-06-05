@@ -31,16 +31,13 @@ mongoose
 });
 
 
-
-// Set static folder
+// Serve frontend static files (always). Ensure API routes are handled first.
 app.use(express.static(path.join(__dirname, 'frontend')));
 
-// Direct any unmatched routes to index.html
+// For any non-API route, return frontend/index.html (SPA fallback).
 app.get('*', (req, res, next) => {
-if (req.path.startsWith('/api/')) {
-return next();
-}
-res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+    if (req.path.startsWith('/api/')) return next();
+    res.sendFile(path.resolve(__dirname, 'frontend', 'index.html'));
 });
 
 
