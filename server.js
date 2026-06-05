@@ -35,7 +35,7 @@ mongoose
 app.use(express.static(path.join(__dirname, 'frontend')));
 
 // For any non-API route, return frontend/index.html (SPA fallback).
-app.get('*', (req, res, next) => {
+app.get('/*', (req, res, next) => {
     if (req.path.startsWith('/api/')) return next();
     res.sendFile(path.resolve(__dirname, 'frontend', 'index.html'));
 });
