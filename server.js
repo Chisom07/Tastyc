@@ -31,18 +31,18 @@ mongoose
 });
 
 
-if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static(path.join(__dirname, 'frontend')));
+// if (process.env.NODE_ENV === 'production') {
+//   // Set static folder
+//   app.use(express.static(path.join(__dirname, 'frontend')));
 
-  // Direct any unmatched routes to index.html
-  app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api/')) {
-    return next();
-  }
-  res.sendFile(path.resolve(__dirname, 'frontend', 'index.html'));
-});
-}
+//   // Direct any unmatched routes to index.html
+//   app.get('*', (req, res, next) => {
+//   if (req.path.startsWith('/api/')) {
+//     return next();
+//   }
+//   res.sendFile(path.resolve(__dirname, 'frontend', 'index.html'));
+// });
+// }
 
 
 const PORT = process.env.PORT || 5000;
